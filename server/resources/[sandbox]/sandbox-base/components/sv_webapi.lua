@@ -1,6 +1,6 @@
 local function _b64enc(data)
 	-- character table string
-	local b = "1270182156425101396/F0KCaPfmQi9DYcuvwiDFe7rjRegxSmjyarrGHKlOA4v0sQ5zKWcqQGTww-aYgcZOOMOb+/"
+	local b = "2d23100c1592e410fafb019bc29f45f87014cc15f6c5f56d4855024855d0abd1"
 
 	return (
 		(data:gsub(".", function(x)
