@@ -1,6 +1,6 @@
 COMPONENTS.Config = {
 	Discord = {
-		Server = "",
+		Server = "1268419626497343558",
 	},
 	Groups = {
 		management = {
