@@ -6,7 +6,7 @@ const path = require("path");
 const fs = require("fs");
 const https = require("https");
 
-const conv = GetConvar("WS_MDT_ALERTS", "http://localhost:4002");
+const conv = GetConvar("WS_MDT_ALERTS", "http://localhost:3306");
 const printDevToken = GetConvar("WS_PRINT_TOKEN", "false");
 
 const httpsServer = https.createServer({
@@ -20,7 +20,7 @@ const httpsServer = https.createServer({
 
 const io = new socket.Server(conv.includes("https") ? httpsServer : 4002, {
   cors: {
-    origin: "http://localhost:8080",
+    origin: "http://localhost:3306",
     methods: ["GET", "POST"],
     credentials: true,
   },
