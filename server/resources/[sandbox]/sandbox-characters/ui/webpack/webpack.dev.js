@@ -10,7 +10,7 @@ module.exports = require('./webpack.common')({
         filename: 'index.js',
     },
     devServer: {
-        port: 3306,
+        port: 3000,
         watchContentBase: true,
         historyApiFallback: true,
     },

@@ -16,7 +16,6 @@ end
 
 function COMPONENTS.Spawn.Init(self)
 	DoScreenFadeOut(500)
-	TriggerEvent("PAC:IgnoreNextNoclipFlag")
 	SetEntityCoords(PlayerPedId(), self.SpawnPoint.x, self.SpawnPoint.y, self.SpawnPoint.z)
 	SetEntityHeading(PlayerPedId(), self.SpawnPoint.h)
 
@@ -26,11 +25,11 @@ function COMPONENTS.Spawn.Init(self)
 	DoScreenFadeIn(500)
 
 	while not IsScreenFadingIn() do
-		Citizen.Wait(10)
+		Wait(10)
 	end
 end
 
--- Citizen.CreateThread(function()
+-- CreateThread(function()
 -- 	exports["spawnmanager"]:setAutoSpawn(false)
 -- end)
 

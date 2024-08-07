@@ -5,7 +5,7 @@
 local myPedId = nil
 
 local phoneProp = 0
-local phoneModel = `ifruit_12`
+local phoneModel = `prop_phone_cs_frank`
 -- OR "prop_npc_phone"
 -- OR "prop_npc_phone_02"
 -- OR "prop_cs_phone_01"
@@ -54,17 +54,17 @@ function newPhoneProp()
 	deletePhone()
 	RequestModel(phoneModel)
 	while not HasModelLoaded(phoneModel) do
-		Citizen.Wait(1)
+		Wait(1)
 	end
-	phoneProp = CreateObject(phoneModel, 1.0, 1.0, 1.0, 1, 1, 0)
+	phoneProp = CreateObject(phoneModel, 1.0, 1.0, 1.0, true, true, false)
 	SetEntityCollision(phoneProp, false, false)
 
-	local bone = GetPedBoneIndex(myPedId, 28422)
-	AttachEntityToEntity(phoneProp, myPedId, bone, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1, 1, 0, 0, 2, 1)
+	local bone = GetPedBoneIndex(LocalPlayer.state.ped, 28422)
+	AttachEntityToEntity(phoneProp, LocalPlayer.state.ped, bone, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, true, true, false, false, 2, true)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while LocalPlayer.state.phoneOpen or _call ~= nil do
-			Citizen.Wait(3)
+			Wait(3)
 		end
 		deletePhone()
 	end)
@@ -105,7 +105,7 @@ function PhonePlayAnim(status, freeze, force)
 	TaskPlayAnim(myPedId, dict, anim, 3.0, -1, -1, flag, 0, false, false, false)
 
 	if status ~= "out" and currentStatus == "out" then
-		Citizen.Wait(380)
+		Wait(380)
 		newPhoneProp()
 	end
 
@@ -115,7 +115,7 @@ function PhonePlayAnim(status, freeze, force)
 	currentStatus = status
 
 	if status == "out" then
-		Citizen.Wait(180)
+		Wait(180)
 		StopAnimTask(myPedId, lastDict, lastAnim, 1.0)
 	end
 end
@@ -127,7 +127,7 @@ function PhonePlayOut()
 end
 
 function PhonePlayText()
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while LocalPlayer.state.phoneOpen do
 			if
 				(
@@ -140,13 +140,13 @@ function PhonePlayText()
 			then
 				PhonePlayAnim("text", false, true)
 			end
-			Citizen.Wait(1000)
+			Wait(1000)
 		end
 	end)
 end
 
 function PhonePlayCall(freeze)
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _call ~= nil and not _call.onHold do
 			if not LocalPlayer.state.phoneOpen then
 				if
@@ -164,7 +164,7 @@ function PhonePlayCall(freeze)
 					PhonePlayAnim("call", freeze, true)
 				end
 			end
-			Citizen.Wait(1000)
+			Wait(1000)
 		end
 	end)
 end
@@ -188,6 +188,6 @@ end
 function loadAnimDict(dict)
 	RequestAnimDict(dict)
 	while not HasAnimDictLoaded(dict) do
-		Citizen.Wait(1)
+		Wait(1)
 	end
 end

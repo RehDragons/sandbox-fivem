@@ -29,7 +29,6 @@ Spawn = {
 		end
 
 		local ped = PlayerPedId()
-		TriggerEvent("PAC:IgnoreNextNoclipFlag")
 		SetEntityCoords(ped, -972.756, -2701.553, 41.45)
 		FreezeEntityPosition(ped, true)
 		SetEntityVisible(ped, false)
@@ -38,10 +37,10 @@ Spawn = {
 		TransitionToBlurred(500)
 		cam = CreateCamWithParams(
 			"DEFAULT_SCRIPTED_CAMERA",
-			-972.756,
-			-2701.553,
-			41.45,
-			-12.335,
+			-90.79,
+			-915.89,
+			236.88,
+			-70.0,
 			0.000,
 			118.395,
 			100.00,
@@ -106,7 +105,6 @@ Spawn = {
 		SetEntityHealth(player, data.HP > 100 and data.HP or 200)
 		DisplayHud(true)
 
-		TriggerEvent("PAC:IgnoreNextNoclipFlag")
 		if data.action ~= nil then
 			TriggerEvent(data.action, data.data)
 		else

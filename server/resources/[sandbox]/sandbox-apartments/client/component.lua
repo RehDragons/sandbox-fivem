@@ -204,14 +204,14 @@ RegisterNetEvent("Apartment:Client:InnerStuff", function(aptId, unit, wakeUp)
 
 	Targeting.Zones:AddBox(
 		string.format("apt-%s-logout", aptId),
-		"bed-front",
+		"bed",
 		p.interior.locations.logout.coords,
 		p.interior.locations.logout.length,
 		p.interior.locations.logout.width,
 		p.interior.locations.logout.options,
 		{
 			{
-				icon = "bed-front",
+				icon = "bed",
 				text = "Switch Characters",
 				event = "Apartment:Client:Logout",
 				data = unit,
@@ -364,7 +364,6 @@ _APTS = {
 
 				FreezeEntityPosition(PlayerPedId(), true)
 				Citizen.Wait(50)
-				TriggerEvent("PAC:IgnoreNextNoclipFlag")
 				SetEntityCoords(
 					PlayerPedId(),
 					p.interior.spawn.x,
@@ -410,8 +409,6 @@ _APTS = {
 
 			Sounds.Play:One("door_close.ogg", 0.3)
 			Citizen.Wait(200)
-
-			TriggerEvent("PAC:IgnoreNextNoclipFlag")
 			SetEntityCoords(PlayerPedId(), p.coords.x, p.coords.y, p.coords.z, 0, 0, 0, false)
 			Citizen.Wait(100)
 			SetEntityHeading(PlayerPedId(), p.heading)
